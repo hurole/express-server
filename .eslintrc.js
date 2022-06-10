@@ -1,13 +1,13 @@
 module.exports = {
     root: true,
     env: {
-        browser: true,
+        node: true,
         commonjs: true,
         es2021: true,
     },
-    extends: "eslint:recommended",
+    extends: 'eslint:recommended',
     parserOptions: {
-        ecmaVersion: "latest",
+        ecmaVersion: 'latest',
     },
     rules: {
         eqeqeq: [2],

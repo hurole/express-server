@@ -1,5 +1,7 @@
 const express = require('express');
 const { router } = require('./routes');
+require('dotenv').config();
+require('./db');
 
 const app = express();
 // json处理
