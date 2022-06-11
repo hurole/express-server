@@ -1,14 +1,14 @@
 const express = require('express');
-const { router } = require('./routes');
+const authRoute = require('./routes/authRoute');
 require('dotenv').config();
 require('./db');
 
 const app = express();
 // json处理
 app.use(express.json());
-// 路由处理
-app.use(router);
+// 身份验证路由处理
+app.use('/api/auth', authRoute);
 
-app.listen(3001, () => {
-    console.log(`server is runing on port 3001`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port 3001~`);
 });

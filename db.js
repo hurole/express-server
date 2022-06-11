@@ -1,10 +1,9 @@
-const { connect, connection } = require('mongoose');
-
-const { DB_URL, DB_NAME, DB_USER, DB_PWD } = process.env;
-connect(`mongodb://${DB_USER}:${DB_PWD}@${DB_URL}/${DB_NAME}`);
-connection.once('open', () => {
-    console.log('DB is connected');
-});
-connection.on('error', (error) => {
-    console.log('DB connect fail', error);
-});
+const mongoose = require('mongoose');
+mongoose
+    .connect(process.env.DB_URL)
+    .then(() => {
+        console.log('DB connection success！');
+    })
+    .catch(() => {
+        console.log('DB connection failed！');
+    });
