@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
+const jwt = require('jsonwebtoken');
 
 module.exports.register = async (req, res, next) => {
     try {
@@ -26,9 +27,19 @@ module.exports.login = async (req, res, next) => {
         // 验证密码
         const isValid = await bcrypt.compare(password, user.password);
         if (isValid) {
-            return res.send({ code: 0, message: '登陆成功' });
+            const id = user._id.toString();
+            // 生成token
+            const token = jwt.sign({ id }, process.env.JWT_SECRET, {
+                // 过期时间 5 分钟
+                expiresIn: 300,
+            });
+            return res.json({
+                code: 0,
+                message: '登录成功',
+                data: { token: `Bearer ${token}` },
+            });
         }
-        res.send({ code: 1, message: '密码错误' });
+        res.json({ code: 1, message: '密码错误' });
     } catch (error) {
         next(error);
     }
