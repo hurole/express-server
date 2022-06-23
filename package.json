@@ -1,7 +1,7 @@
 {
-  "name": "vue3-admin-server",
+  "name": "express-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Expres+MongoDB搭建的服务",
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js"
